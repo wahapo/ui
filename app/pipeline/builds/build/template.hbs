@@ -15,6 +15,7 @@
   {{#each stepList as |name index|}}
     {{build-step
       stepName=name
+      openStep=step
       startTime=(get (index-of model.build.steps index) "startTime")
       endTime=(get (index-of model.build.steps index) "endTime")
       code=(get (index-of model.build.steps index) "code")

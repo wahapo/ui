@@ -2,6 +2,12 @@ import Ember from 'ember';
 import ENV from 'screwdriver-ui/config/environment';
 
 export default Ember.Controller.extend({
+  queryParams: [{
+    step: {
+      replace: true
+    }
+  }],
+  step: null,
   session: Ember.inject.service('session'),
   loading: false,
   counter: 0,

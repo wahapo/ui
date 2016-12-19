@@ -18,16 +18,21 @@ export default Ember.Component.extend({
     const code = this.get('code');
     const startTime = this.get('startTime');
     const endTime = this.get('endTime');
+    const stepName = this.get('stepName');
+    const openStep = this.get('openStep');
+
     // if code is defined and not 0, or step is running
-    const shouldOpen = !!(code || (startTime && !endTime));
+    const shouldOpen = !!(code || (startTime && !endTime)) || stepName === openStep;
 
     // open the logs when the step is running and are not already displayed
     if (shouldOpen && !isOpen && autoOpen) {
       this.set('isOpen', true);
+      console.log(stepName, shouldOpen);
     // close the logs when the step has finished successfully, are currently open,
     // and the user hasn't stopped logs from closing
     } else if (!shouldOpen && isOpen && autoClose) {
       this.set('isOpen', false);
+      console.log(stepName, shouldOpen);
     }
   },
 
