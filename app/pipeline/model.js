@@ -12,5 +12,10 @@ export default DS.Model.extend({
   jobs: DS.hasMany('job', { async: true }),
   scmRepo: DS.attr(),
   scmUri: DS.attr('string'),
-  secrets: DS.hasMany('secret', { async: true })
+  secrets: DS.hasMany('secret', { async: true }),
+  standardJobs: Ember.computed.filter('jobs', j => !/^PR-/.test(j.get('name'))),
+  pullRequests: Ember.computed.filter('jobs', j => /^PR-/.test(j.get('name'))),
+  failingPRs: Ember.computed.filter('pullRequests',
+    j => j.get('lastBuild.status') && j.get('lastBuild.status') !== 'SUCCESS'
+  )
 });

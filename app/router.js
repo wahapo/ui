@@ -25,6 +25,7 @@ Router.map(function route() {
   this.route('page-not-found', { path: '/*path' });
   this.route('search');
   this.route('validator');
+  this.route('dashboard');
 });
 /* eslint-enable array-callback-return */
 

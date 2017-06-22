@@ -1,0 +1,24 @@
+<table style="width:100%;margin:35px">
+  <thead>
+    <tr>
+      <td rowspan=2>Pipeline</td>
+      <td rowspan=2>Health</td>
+      <td colspan=2>Pull Requests</td>
+    </tr>
+    <tr>
+      <td>Open</td>
+      <td>Failed</td>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each sortedPipelines as |p|}}
+      <tr>
+        <td>{{#link-to "pipeline" p.id}}{{p.appId}}#{{p.branch}}{{/link-to}}</td>
+        <td>{{p.events.firstObject.builds.lastObject.status}}</td>
+        <td>{{p.pullRequests.length}}</td>
+        <td>{{p.failingPRs.length}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
+{{outlet}}
