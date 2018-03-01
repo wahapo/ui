@@ -133,10 +133,28 @@ const decorateGraph = (inputGraph, builds, start) => {
   // simple clone
   const graph = JSON.parse(JSON.stringify(inputGraph));
   const nodes = graph.nodes;
+  const edges = graph.edges;
   const buildsAvailable = (Array.isArray(builds) || builds instanceof DS.PromiseArray) &&
     get(builds, 'length');
-  const edges = graph.edges;
   let y = [0]; // accumulator for column heights
+
+  // Detatch ~pr workflow
+  edges.forEach((e) => {
+    if (e.src === '~pr') {
+      const name = e.dest;
+      const gNode = graph.nodes.find(el => el.name === name);
+
+      if (node) {
+        const newNode = Object.assign({}, gNode);
+
+        newNode.name = `PR:${name}`;
+        e.dest = newNode.name;
+        // TODO: how to make this display build info PR events
+        delete newNode.id;
+        graph.nodes.push(newNode);
+      }
+    }
+  });
 
   nodes.forEach((n) => {
     // Set root nodes on left
