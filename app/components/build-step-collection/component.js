@@ -37,6 +37,7 @@ export default Component.extend({
     },
     stepClick(name) {
       set(this, 'selectedStep', name);
+       // this is where you append name to URL
     }
   }
 });
