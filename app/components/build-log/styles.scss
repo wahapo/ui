@@ -31,8 +31,9 @@
 }
 
 .wrap {
-  height: 500px;
+  min-height: 500px;
   overflow-y: auto;
+  max-height: calc(100vh - 225px);
 }
 
 .logs {
@@ -62,4 +63,9 @@
 
 .right {
   text-align: right;
+}
+
+// Select for phone
+@media screen and (max-width: 879px) {
+  max-height: calc(100vh - 200px);
 }
