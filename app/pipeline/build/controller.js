@@ -44,7 +44,9 @@ export default Controller.extend({
     },
 
     graphClicked(job) {
-      this.transitionToRoute('pipeline.build', job.buildId);
+      if (job) {
+        this.transitionToRoute('pipeline.build', job.buildId);
+      }
     },
 
     stopBuild() {

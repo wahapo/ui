@@ -182,6 +182,7 @@ export default Component.extend({
         if (this.get('dragsize')) {
           return d.name;
         }
+
         return d.status
       });
 
@@ -219,13 +220,12 @@ export default Component.extend({
         let endX;
         let endY;
 
-        if(get(this, 'dragsize')) {
+        if (get(this, 'dragsize')) {
           startX = calcXCenter(d.from.x) + (ICON_SIZE / 2) + EDGE_GAP;
           startY = calcPos(d.from.y, Y_SPACING) + 4;
           endX = calcXCenter(d.to.x) - (ICON_SIZE / 2) - EDGE_GAP;
           endY = calcPos(d.to.y, Y_SPACING) + 4;
-        }
-        else {
+        } else {
           startX = calcXCenter(d.from.x) + (ICON_SIZE / 2) + EDGE_GAP;
           startY = calcPos(d.from.y, Y_SPACING);
           endX = calcXCenter(d.to.x) - (ICON_SIZE / 2) - EDGE_GAP;
